@@ -82,7 +82,7 @@ const display = document.getElementById("display");
 //     this.updateDisplay();
 //   };
 // }
-const calculadora = new Calculator();
+const calculadora = new Calculator({ display:  });
 // EVENT LISTENERS
 numberButtons.forEach((item) => {
     item.addEventListener("click", () => {

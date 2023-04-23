@@ -16,85 +16,8 @@ const operatorButtons = document.querySelectorAll(".btn-operator");
 
 const display = document.getElementById("display");
 
-// function Calculator() {
-//   this.firstOperand = "";
-//   this.currentOperand = "";
-//   this.operation = "";
 
-//   // UPDATE BOTH VALUES ON DISPLAY
-//   this.updateDisplay = function () {
-//     displayFirst.textContent = this.firstOperand + this.operation;
-//     display.textContent = this.currentOperand;
-//   };
-
-//   // ADD NUMBER ON DISPLAY
-//   this.appendNumber = function (number) {
-//     if (this.currentOperand.includes(".") && number === ".") return;
-//     this.currentOperand += number.toString();
-//     this.updateDisplay();
-//   };
-
-//   // SELECT OPERATOR
-//   this.chooseOperation = function (operator) {
-//     if (this.currentOperand === "") return;
-//     if (this.firstOperand !== "") {
-//       this.calc();
-//     }
-//     this.operation = operator;
-//     this.firstOperand = this.currentOperand;
-//     this.currentOperand = "";
-//     this.updateDisplay();
-//   };
-
-//   // CALC RESULT BASED ON OPERATOR
-//   this.calc = function () {
-//     let result;
-//     let prev = parseFloat(this.firstOperand);
-//     let current = parseFloat(this.currentOperand);
-//     if (isNaN(prev) || isNaN(current)) return;
-//     switch (this.operation) {
-//       case "+":
-//         result = prev + current;
-//         break;
-//       case "-":
-//         result = prev - current;
-//         break;
-//       case "×":
-//         result = prev * current;
-//         break;
-//       case "÷":
-//         result = prev / current;
-//         break;
-//       default:
-//         return;
-//     }
-//     this.firstOperand = "";
-//     this.currentOperand = result.toString();
-//     this.operation = "";
-//     this.updateDisplay();
-//   };
-
-//   this.sqrt = function () {
-//     this.currentOperand = Math.sqrt(this.currentOperand).toFixed(2);
-//     this.updateDisplay();
-//   };
-
-//   // CLEAR DISPLAY
-//   this.clear = function () {
-//     this.firstOperand = "";
-//     this.currentOperand = "";
-//     this.operation = "";
-//     this.updateDisplay();
-//   };
-
-//   // DELETE LAST INPUT
-//   this.backspace = function () {
-//     this.currentOperand = this.currentOperand.slice(0, -1);
-//     this.updateDisplay();
-//   };
-// }
-
-const calculadora = new Calculator();
+const calculadora = new Calculator({display: });
 
 // EVENT LISTENERS
 numberButtons.forEach((item) => {
