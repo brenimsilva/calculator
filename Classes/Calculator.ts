@@ -1,10 +1,13 @@
 import { EOperators } from "../enum/EOperators";
-interface ICalcProps {
-    operation: string;
+export interface ICalcProps {
     display: HTMLDivElement;
     displayFirst: HTMLDivElement;
     numbers: NodeListOf<HTMLButtonElement>;
     operators: NodeListOf<HTMLButtonElement>;
+    sqrtBtn: HTMLButtonElement;
+    equalBtn: HTMLButtonElement;
+    clearBtn: HTMLButtonElement;
+    backspaceBtn: HTMLButtonElement;
 }
 
 
@@ -15,13 +18,49 @@ export default class Calculator {
     operation: EOperators | string;
     display: HTMLDivElement;
     displayFirst: HTMLDivElement;
+    sqrtBtn: HTMLButtonElement;
+    equalBtn: HTMLButtonElement;
+    clearBtn: HTMLButtonElement;
+    backspaceBtn: HTMLButtonElement;
 
-    constructor({display, displayFirst, numbers, operation, operators}: ICalcProps) {
+    constructor({display, displayFirst, numbers, operators, backspaceBtn, clearBtn, equalBtn, sqrtBtn}: ICalcProps) {
        this.firstOperand = "";
        this.currentOperand = "";
        this.operation = "";
        this.display = display;
        this.displayFirst = displayFirst
+       this.equalBtn = equalBtn;
+       this.sqrtBtn = sqrtBtn;
+       this.clearBtn = clearBtn;
+       this.backspaceBtn = backspaceBtn;
+
+       numbers.forEach((item) => {
+        item.addEventListener("click", () => {
+          this.appendNumber(item.innerText);
+        });
+      });
+      
+      operators.forEach((item) => {
+        item.addEventListener("click", () => {
+          this.chooseOperation(item.innerText);
+        });
+      });
+
+      this.equalBtn.addEventListener("click", () => {
+        this.calc();
+      });
+      
+      this.clearBtn.addEventListener("click", () => {
+        this.clear();
+      });
+      
+      this.backspaceBtn.addEventListener("click", () => {
+        this.backspace();
+      });
+      
+      this.sqrtBtn.addEventListener("click", () => {
+        this.sqrt();
+      });
     }
 
     public updateDisplay() {
@@ -73,6 +112,10 @@ export default class Calculator {
     this.updateDisplay();
     }
 
+    public sqrt() {
+        this.currentOperand = Math.sqrt(parseInt(this.currentOperand)).toFixed(2);
+        this.updateDisplay();
+      };
 
   public clear() {
     this.firstOperand = "";

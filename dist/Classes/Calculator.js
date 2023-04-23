@@ -1,10 +1,36 @@
 export default class Calculator {
-    constructor({ display, displayFirst, numbers, operation, operators }) {
+    constructor({ display, displayFirst, numbers, operators, backspaceBtn, clearBtn, equalBtn, sqrtBtn }) {
         this.firstOperand = "";
         this.currentOperand = "";
         this.operation = "";
         this.display = display;
         this.displayFirst = displayFirst;
+        this.equalBtn = equalBtn;
+        this.sqrtBtn = sqrtBtn;
+        this.clearBtn = clearBtn;
+        this.backspaceBtn = backspaceBtn;
+        numbers.forEach((item) => {
+            item.addEventListener("click", () => {
+                this.appendNumber(item.innerText);
+            });
+        });
+        operators.forEach((item) => {
+            item.addEventListener("click", () => {
+                this.chooseOperation(item.innerText);
+            });
+        });
+        this.equalBtn.addEventListener("click", () => {
+            this.calc();
+        });
+        this.clearBtn.addEventListener("click", () => {
+            this.clear();
+        });
+        this.backspaceBtn.addEventListener("click", () => {
+            this.backspace();
+        });
+        this.sqrtBtn.addEventListener("click", () => {
+            this.sqrt();
+        });
     }
     updateDisplay() {
         this.displayFirst.textContent = this.firstOperand + this.operation;
@@ -55,6 +81,11 @@ export default class Calculator {
         this.currentOperand = "";
         this.updateDisplay();
     }
+    sqrt() {
+        this.currentOperand = Math.sqrt(parseInt(this.currentOperand)).toFixed(2);
+        this.updateDisplay();
+    }
+    ;
     clear() {
         this.firstOperand = "";
         this.currentOperand = "";
